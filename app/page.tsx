@@ -1,5 +1,6 @@
 'use client';
 import { askGemini } from "@/src/lib/gemini";
+import { RAG } from "@/src/lib/RAG_API";
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -20,7 +21,7 @@ export default function ChatPage() {
     setLoading(true);
 
     try {
-      const reply = await askGemini(input);
+      const reply = await RAG(input);
       const botMsg: Message = { role: "bot", text: reply };
       setMessages((prev) => [...prev, botMsg]);
     } catch (error) {
@@ -41,7 +42,7 @@ export default function ChatPage() {
       
       {/* Header */}
       <header className="p-5 shadow-md bg-white border-b border-gray-200 flex items-center justify-center">
-        <h1 className="text-2xl font-bold text-gray-900 tracking-wide">Gemini Chatbot</h1>
+        <h1 className="text-2xl font-bold text-gray-900 tracking-wide">Iqra University Admission Policy Chatbot</h1>
       </header>
 
       {/* Optional Loading Bar */}
